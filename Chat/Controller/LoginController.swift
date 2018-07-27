@@ -74,6 +74,14 @@ class LoginController: UIViewController {
         return view
     }()
 
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "IPN")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     // MARK: viewDidLoad
 
     override func viewDidLoad() {
@@ -83,12 +91,21 @@ class LoginController: UIViewController {
 
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
+        view.addSubview(profileImageView)
         
         setupInputsContainerView()
         setupLoginRegisterButton()
+        setupProfileImageView()
     }
     
     // MARK: Constainst go here
+
+    func setupProfileImageView() {
+        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    }
 
     func setupInputsContainerView() {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -149,7 +166,7 @@ class LoginController: UIViewController {
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginRegisterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
